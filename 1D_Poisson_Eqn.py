@@ -33,4 +33,5 @@ ax.plot(x[1:-1], u, 'ks')
 ax.set_xlim(0, 1)
 ax.set_xlabel(r'$x$', fontsize=18)
 ax.set_ylabel(r'$U(x)$', fontsize=18)
+plt.show()
 # %%
