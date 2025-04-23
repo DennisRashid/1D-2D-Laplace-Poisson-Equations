@@ -11,12 +11,14 @@ dx = 1/(N+1) #Grid spacing
 #Construct the system matrix A (Laplacian operator using finite differences)
 A = (np.eye(N, k=-1) - 2*np.eye(N, k=0) + np.eye(N, k=1))/(dx**2) 
 
+#Heating source term
+H_t = -5
 #Define the right-hand side vector b for Poisson's equation: u_xx = -5
-b = -5 * np.ones(N) #RHS values for interior points (source term is -5)
+b = H_t * np.ones(N) #RHS values for interior points (source term is -5)
 
 #Modify b to include the effect of Dirichlet boundary conditions
-b[0] = -5 - u0/dx**2 #Influence of u(0)
-b[-1] = -5 - u1/dx**2 #Influence of u(1)
+b[0] = H_t - u0/dx**2 #Influence of u(0)
+b[-1] = H_t - u1/dx**2 #Influence of u(1)
 
 #Solve the linear system
 u = la.solve(A, b)
